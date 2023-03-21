@@ -6,7 +6,7 @@ public class Ufospiel{
     private GLHimmel himmel;
 
     private Ufo dasUfo;
-    private Asteroid asteroid1,asteroid2,asteroid3;
+     Asteroid[]  schteitene;
     //[...]
 
     public Ufospiel(){
@@ -18,16 +18,28 @@ public class Ufospiel{
 
         dasUfo = new Ufo();
 
-        asteroid1 = new Asteroid();
-        //[...]
+       schteitene = new Asteroid [20];
+       for (int i=0;i<schteitene.length;i++){
+           schteitene[i]=new Asteroid(dasUfo, 0,0);
+       }
+       for(int i=0;i < schteitene.length;i++){schteitene[i].Zurück(Math.random()*1000-500,Math.random()*1000);}
+
         
         fuehreAus();
     }
 
     public void fuehreAus(){
         while(!tastatur.esc()){           
-            asteroid1.bewegeDich();
-            //[...]
+
+            if(tastatur.unten() && dasUfo.GibY()>-200){dasUfo.bewegeRunter();}
+            if(tastatur.rechts() && dasUfo.GibX()<475){dasUfo.bewegeRechts();}
+            if(tastatur.oben() && dasUfo.GibY()<200){dasUfo.bewegeHoch();}
+            if(tastatur.links() && dasUfo.GibX()>-475){dasUfo.bewegeLinks();}
+
+//dicks
+
+
+
 
             Sys.warte();
         }
