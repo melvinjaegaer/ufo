@@ -6,10 +6,10 @@ public class Ufospiel{
     private GLHimmel himmel;
 
     private Ufo dasUfo;
-     Asteroid[]  schteitene;
-    //[...]
+     Asteroid schteitene[];
+     Asteroid Asteriod;
 
-    public Ufospiel(){
+    public  Ufospiel(){
         kamera = new GLSchwenkkamera(800,600);  
         kamera.verschiebe(0,200,500);
         licht  = new GLLicht();
@@ -18,30 +18,41 @@ public class Ufospiel{
 
         dasUfo = new Ufo();
 
-       schteitene = new Asteroid [20];
+       schteitene = new Asteroid [100];
        for (int i=0;i<schteitene.length;i++){
-           schteitene[i]=new Asteroid(dasUfo, 0,0);
+           schteitene[i]=new Asteroid( 0,0);
        }
-       for(int i=0;i < schteitene.length;i++){schteitene[i].Zurück(Math.random()*1000-500,Math.random()*1000);}
+       for(int i=0;i < schteitene.length;i++){schteitene[i].Zurück(Math.random()*3000-1500,Math.random()*3000-1000,-10000);}
 
-        
+
+      // if(dasUfo.GibX() = Asteriod.GibX()){ Sys.beenden();}
+
+
         fuehreAus();
     }
 
     public void fuehreAus(){
         while(!tastatur.esc()){           
 
-            if(tastatur.unten() && dasUfo.GibY()>-200){dasUfo.bewegeRunter();}
-            if(tastatur.rechts() && dasUfo.GibX()<475){dasUfo.bewegeRechts();}
-            if(tastatur.oben() && dasUfo.GibY()<200){dasUfo.bewegeHoch();}
-            if(tastatur.links() && dasUfo.GibX()>-475){dasUfo.bewegeLinks();}
+            if(tastatur.unten() && dasUfo.GibY()>-250){dasUfo.bewegeRunter();}
+            if(tastatur.rechts() && dasUfo.GibX()<600){dasUfo.bewegeRechts();}
+            if(tastatur.oben() && dasUfo.GibY()<400){dasUfo.bewegeHoch();}
+            if(tastatur.links() && dasUfo.GibX()>-600){dasUfo.bewegeLinks();}
+
+            for (int i=0;i<schteitene.length;i++){
+                schteitene[i].bewegeDich();
+
+            if (schteitene[i].GibZ() > 0) {
+                schteitene[i].Zurück(Math.random()*3000-1500,Math.random()*3000-1000,-10000);
+            }}
+
 
 //dicks
 
 
 
 
-            Sys.warte();
+            Sys.warte(50);
         }
         Sys.beenden(); 
     }
