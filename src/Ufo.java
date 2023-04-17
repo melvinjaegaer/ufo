@@ -16,15 +16,15 @@ public class Ufo{
     }
  
     public void bewegeLinks(){
-    cockpit.verschiebe(-1,0,0) ;}
+    cockpit.verschiebe(-30,0,0) ;}
 
 
     public void bewegeRechts(){
-        cockpit.verschiebe(1,0,0) ;}
+        cockpit.verschiebe(30,0,0) ;}
     public void bewegeHoch(){
-        cockpit.verschiebe(0,1,0) ;}
+        cockpit.verschiebe(0,30,0) ;}
     public void bewegeRunter(){
-        cockpit.verschiebe(0,-1,0) ;}
+        cockpit.verschiebe(0,-30,0) ;}
 
 
     public void explodiere(){

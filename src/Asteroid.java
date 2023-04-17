@@ -4,13 +4,13 @@ public class Asteroid{
     //[...]
     private Ufo dasUfo;
 
-    public Asteroid(double pX,double pY){
-        kugel = new GLKugel(pX,1000,0, 50, "src/img/Krater.jpg");
-        //[...]
+    public Asteroid(double pX,double pY,double pZ,Ufo pdasUfo){
+        kugel = new GLKugel(pX,1000,0, 150, "src/img/Krater.jpg");
+       dasUfo=pdasUfo;
     }
 
     public void bewegeDich() {
-        kugel.verschiebe(0, 0, 100);
+        kugel.verschiebe(0, 0, 500);
     }
 
     public double GibX () {return kugel.gibX();
@@ -24,9 +24,17 @@ public class Asteroid{
 
 
 public void Zurück(double pX,double pY,double pZ) {
-    kugel.setzePosition(pX, pY, -1000);
+    kugel.setzePosition(pX, pY, Math.random()*1000-15000);
 
-}}
+}
+
+    public boolean getroffen(){
+        double distance = Math.sqrt(Math.pow( kugel.gibX()- dasUfo.GibX(), 2 ) + Math.pow( kugel.gibY()- dasUfo.GibY(), 2 ) + Math.pow( kugel.gibZ()- dasUfo.GibZ(), 2 ));
+
+            if (distance < 200) return true;
+            else return false;
+        }
+}
 
 
 
